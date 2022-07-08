@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas 10 Ô Màu - OkNguyen</title>
+	<meta charset="UTF-8">
+    <script type="text/javascript" src="https://lib.oknguyen.com/icon-oknguyen.js"></script>
+</head>
+<body>
+	<canvas id="myCanvas" width="1000" height="600" style="border:1px solid black;">
+		Trình duyệt của bạn không hỗ trợ Canvas.
+	</canvas>
+</body>
+<script type="text/javascript">
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+
+	for (var i = 0; i <= 10; i ++) {
+		for (var j = 0; j <= 10; j ++) {
+			ctx.strokeStyle = "rgb(" + i * 45 + ", " + j * 45 + ", " + (i + j) * 10 + ")";
+			ctx.beginPath();
+			ctx.arc(30 * j + 20, 30 * i + 20, 10, 0 * Math.PI, 2 * Math.PI);
+			ctx.closePath();
+			ctx.lineWidth = 5;
+			ctx.stroke();
+		}
+	}
+</script>
+</html>
