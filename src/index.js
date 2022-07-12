@@ -1,27 +1,16 @@
 const express = require('express')
 import configViewEngine from './configs/viewEngine'
+import initWebRouter from './router/web'
 const path = require('path')
+require('dotenv').config();
 
 const app = express()
-const port = 3000
 
-configViewEngine(app)
+// Nếu <process.env.PORT> bị lỗi thì sẽ dùng port 8080
+const port = process.env.PORT || 8080
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.get('/ejs', (req, res) => {
-    res.render('index.ejs')
-})
-
-app.get('/info', (req, res) => {
-    res.send('Xin chào! Tôi là OkNguyen!')
-})
-
-app.get('/oknguyen', (req, res) => {
-    res.sendFile(path.join(__dirname, "./index.html"))
-})
+configViewEngine(app);
+initWebRouter(app);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
